@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +7,27 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'shopping-app';
+  chosenTab='recipesClicked'
+  onAfterViewInit(){
+    this.headerTabClick()
+  }
+
+  headerTabClick(chosenTab:string="recipesClicked"){
+    this.chosenTab = chosenTab
+  //   switch(chosenTab) { 
+  //     case "recipesClicked": { 
+  //        //statements; 
+  //        break; 
+  //     } 
+  //     case "shoppingListClick": { 
+  //        //statements; 
+  //        break; 
+  //     } 
+  //     default: { 
+  //        //statements; 
+  //        break; 
+  //     } 
+  //  } 
+
+  }
 }
