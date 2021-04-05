@@ -1,17 +1,26 @@
 <div class="row">
     <div class="col-xs-12">
-        <img src="" slt="" class="img-responsive">
+        <img 
+        src="{{displayRecipe.imagePath}}" 
+        slt="" 
+        class="img-responsive"
+        style="max-height: 300px;"
+        >
     </div>
 </div>
 <div class="row">
     <div class="col-xs-12">
-        <h1>Recipe Name</h1>
+        <h1>{{displayRecipe.name}}</h1>
     </div>
 </div>
 <div class="row">
     <div class="col-xs-12">
-        <div class="bnt-group">
-            <button type="button" class="btn btn-primary dropdown-toggle">
+        <!-- <div class={{onClickShowButtonGroup}}
+        > -->
+
+        <div class=bnt-group
+        appDropdown>
+            <button type="button" class="btn btn-primary dropdown-toggle" (click)=showButtonGroup()>
                 Manage Recipe<span class="caret"></span>
             </button>
                 <ul class="dropdown-menu">
@@ -24,7 +33,7 @@
 </div>
 <div class="row">
     <div class="col-xs-12">
-        Description
+        {{displayRecipe.description}}
     </div>
 </div>
 <div class="row">
