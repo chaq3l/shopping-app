@@ -1,7 +1,9 @@
-<a 
-href="#"
-[routerLink]=""
-(click)="onClickSelectRecipy(recipe)" 
+<!-- (click)="onClickSelectRecipy(recipe)"  -->
+<a
+style="cursor: pointer"
+[routerLink]="['/recipe', id]"
+routerLinkActive='active'
+
 class="list-group-item clearfix"
 > 
     <div  class="pull-left">

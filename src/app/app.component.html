@@ -1,11 +1,11 @@
-<app-header (headerTabClick)="headerTabClick($event)"></app-header>
+<app-header></app-header>
 <div class="container">  
   <div class="row">
     <div class="col-md-12"> 
-      <app-recipes *ngIf = "chosenTab=='recipesClicked'"></app-recipes>      
-      
+      <!-- <app-recipes *ngIf = "chosenTab=='recipesClicked'"></app-recipes>       -->
+      <router-outlet></router-outlet>
     
-      <app-shopping-list *ngIf = "chosenTab=='shoppingListClick'"></app-shopping-list>
+      <!-- <app-shopping-list *ngIf = "chosenTab=='shoppingListClick'"></app-shopping-list> -->
     </div>
   </div>
   

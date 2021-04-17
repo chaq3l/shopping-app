@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -8,14 +9,13 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 export class HeaderComponent implements OnInit {
   collapsed = true;
-  @Output() headerTabClick = new EventEmitter<string>()
   
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
   }
   onSelect(headerFeature:string){
-    this.headerTabClick.emit(headerFeature)
+    //this.headerTabClick.emit(headerFeature)
     //console.log("recipesClicked")
   }  
 }

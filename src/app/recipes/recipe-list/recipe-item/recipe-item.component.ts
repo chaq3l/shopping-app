@@ -9,15 +9,16 @@ import { Recipe } from '../../recipe.model'
 })
 export class RecipeItemComponent implements OnInit {
   @Input('recipeItem') recipe!: Recipe;
+  @Input('recipeId') id!:number
   
   constructor(private recipeService:RecipeService) { }
 
   ngOnInit(): void {
   }
 
-  onClickSelectRecipy(recipe:Recipe) {  
-    //emitting recipe is not necessary in this case. It can be made in html (and it is)  
-    this.recipeService.serveRecipeClick(recipe)
+  // onClickSelectRecipy(recipe:Recipe) {  
+  //   //emitting recipe is not necessary in this case. It can be made in html (and it is)  
+  //   this.recipeService.serveRecipeClick(recipe)
       
-  }
+  // }
 }
