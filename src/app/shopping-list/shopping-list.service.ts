@@ -36,7 +36,7 @@ export class ShoppingListService {
     }
 
     deleteIngredient(index : number){
-        this.ingredients.slice(index, 1)
+        this.ingredients.splice(index, 1)
         //console.log(this.ingredients[index].name, this.ingredients.splice(index, 1))
         this.transmitWhileAddingIngredient.next(this.ingredients.slice())        
         
