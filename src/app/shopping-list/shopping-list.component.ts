@@ -16,11 +16,16 @@ private idChangeSub!: Subscription;
     ngOnInit(): void {
         this.ingredients=this.shoppingListService.getIngrediets()
         this.idChangeSub = this.shoppingListService.transmitWhileAddingIngredient.subscribe(
-            (event:Event)=>{
+            ()=>{
                 this.ingredients=this.shoppingListService.getIngrediets()
             }
         )
     }
+
+    onEditItem(index:number){
+        this.shoppingListService.startedEditing.next(index)
+    }
+
     ngOnDestroy(): void{
         this.idChangeSub.unsubscribe();
     }
