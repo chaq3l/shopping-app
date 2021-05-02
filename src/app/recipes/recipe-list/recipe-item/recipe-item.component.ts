@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { RecipeService } from 'src/app/recipes/recipe.service';
+import { Recipe } from '../../recipe.model'
 
 @Component({
   selector: 'app-recipe-item',
@@ -6,10 +8,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./recipe-item.component.css']
 })
 export class RecipeItemComponent implements OnInit {
-
-  constructor() { }
+  @Input('recipeItem') recipe!: Recipe;
+  @Input('recipeId') id!:number
+  
+  constructor(private recipeService:RecipeService) { }
 
   ngOnInit(): void {
   }
 
+  // onClickSelectRecipy(recipe:Recipe) {  
+  //   //emitting recipe is not necessary in this case. It can be made in html (and it is)  
+  //   this.recipeService.serveRecipeClick(recipe)
+      
+  // }
 }
