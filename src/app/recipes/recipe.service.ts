@@ -1,11 +1,14 @@
 //import { EventEmitter } from '@angular/core';
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 //import { Subject } from 'rxjs';
 import { Ingredient } from '../shared/ingredient.model';
 import { ShoppingListService } from '../shopping-list/shopping-list.service';
 import { Recipe } from './recipe.model'
 @Injectable()
 export class RecipeService {
+    recipeChanged = new Subject<Recipe[]>()
+
     //selectedRecipe = new Subject<Recipe>();
     private recipes: Recipe[] = [
         new Recipe('Schabowy z frytkami', 'Kotlet schabowy - smakuje jak u mamy',
@@ -50,5 +53,15 @@ export class RecipeService {
         if (recipe!=undefined){          
           return recipe
         }else {return this.recipes[0]}        
+      }
+
+      addRecipe(recipe:Recipe){
+        this.recipes.push(recipe)
+        this.recipeChanged.next(this.recipes.slice())
+      }
+
+      updateRecipe(index: number, newRecipe: Recipe) {
+        this.recipes[index] = newRecipe
+        this.recipeChanged.next(this.recipes.slice())
       }
 }
