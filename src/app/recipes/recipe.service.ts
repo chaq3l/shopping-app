@@ -5,10 +5,12 @@ import { Subject } from 'rxjs';
 import { Ingredient } from '../shared/ingredient.model';
 import { ShoppingListService } from '../shopping-list/shopping-list.service';
 import { Recipe } from './recipe.model'
+import { DataStorageService } from '../shared/data-storage.service';
+
 @Injectable()
 export class RecipeService {
     recipeChanged = new Subject<Recipe[]>()
-
+    
     //selectedRecipe = new Subject<Recipe>();
     private recipes: Recipe[] = [
         new Recipe('Schabowy z frytkami', 'Kotlet schabowy - smakuje jak u mamy',
@@ -27,7 +29,8 @@ export class RecipeService {
         ])
       ];
 
-      constructor(private shoppingListService:ShoppingListService){}
+      constructor(private shoppingListService:ShoppingListService, private dataStorageSercice : DataStorageService){}
+     
       //selectedRecipe= new Recipe('Empty recipe', 'This is empty recipe from RecipeService. If you see this there is probably an error in application', '')
       
       // serveRecipeClick(recipe:Recipe){
@@ -68,5 +71,11 @@ export class RecipeService {
       deleteRecipe(index: number){
         this.recipes.splice(index, 1)
         this.recipeChanged.next(this.recipes.slice())
+      }
+
+      overrideRecipes(){
+        // const fetchedRecipes : Recipe[] = []
+        // fetchedRecipes.push(...this.dataStorageSercice.fetchRecipes())
+        // this.recipes = this.dataStorageSercice.fetchRecipes()
       }
 }
