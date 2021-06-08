@@ -25,6 +25,7 @@ export class RecipeDetailComponent implements OnInit {
     )
   }
   showButtonGroup(){
+    //console.log("manage recipe click")
     if(this.onClickShowButtonGroup!="bnt-group open"){
       this.onClickShowButtonGroup="bnt-group open"
     }else{
@@ -33,6 +34,7 @@ export class RecipeDetailComponent implements OnInit {
   }
   toShoppingList(){    
       this.recipeService.addIngredientsToShoppingList(this.recipe.ingredients)
+      this.onClickShowButtonGroup="bnt-group"
     }
   
     // onEdit(){
