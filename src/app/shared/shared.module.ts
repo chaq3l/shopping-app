@@ -2,6 +2,7 @@ import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 
 import { AlertComponent } from "./alert/alert.component";
+import { AutoDropdownDirective } from "./auto-dropdown.directive";
 import { DropdownDirective } from "./dropdown.directive";
 import { LoadingSpinnerComponent } from "./loading-spinner/loading-spinner.component";
 import { PlaceholderDirective } from "./placeholder/placeholder.directive";
@@ -12,6 +13,7 @@ import { PlaceholderDirective } from "./placeholder/placeholder.directive";
         LoadingSpinnerComponent,
         PlaceholderDirective,
         DropdownDirective,
+        AutoDropdownDirective
 
     ],
     imports: [
@@ -22,6 +24,7 @@ import { PlaceholderDirective } from "./placeholder/placeholder.directive";
         LoadingSpinnerComponent,
         PlaceholderDirective,
         DropdownDirective,
+        AutoDropdownDirective,
         CommonModule
     ],
     entryComponents: [

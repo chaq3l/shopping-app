@@ -7,23 +7,23 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { AutoDropdownDirective } from './shared/auto-dropdown.directive'
-import { ShoppingListService } from './shopping-list/shopping-list.service';
-import { RecipeService } from './recipes/recipe.service';
+
+
 import { AuthComponent } from './auth/auth.component';
-import { AuthInterceptorService } from './auth/auth-interceptor.service';
+
 //import { AlertComponent } from './shared/alert/alert.component'
 import { RecipesModule } from './recipes/recipes.module';
 import { ShoppingModule } from './shopping-list/shopping.module';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core.module';
+import { AuthModule } from './auth/auth.module';
 //import { RecipeService } from './recipes/recipe.service'
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    AutoDropdownDirective,
-    AuthComponent,
+    //AuthComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,6 +32,7 @@ import { CoreModule } from './core.module';
     ReactiveFormsModule,
     HttpClientModule,
     ShoppingModule,
+    AuthModule,
     RecipesModule,
     SharedModule,
     CoreModule    
