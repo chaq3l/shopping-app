@@ -1,7 +1,6 @@
 import { Component, OnInit, Input} from '@angular/core';
 import { RecipeService } from '../recipe.service';
 import { Recipe } from '../recipe.model'
-import { ShoppingListService } from 'src/app/shopping-list/shopping-list.service';
 import { ActivatedRoute, Params, Router  } from '@angular/router';
 import { Subscription } from 'rxjs';
 

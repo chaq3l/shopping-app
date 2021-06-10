@@ -1,8 +1,6 @@
-import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
-import { DropdownDirective } from "../shared/dropdown.directive";
 import { SharedModule } from "../shared/shared.module";
 import { ShoppingEditComponent } from "./shopping-edit/shopping-edit.component";
 import { ShoppingListComponent } from "./shopping-list.component";
@@ -13,7 +11,10 @@ import { ShoppingListComponent } from "./shopping-list.component";
         ShoppingEditComponent,
     ],
     imports: [
-        RouterModule.forChild([{ path:'shopping-list', component: ShoppingListComponent } ]),
+        RouterModule.forChild([
+            { path:'', component: ShoppingListComponent },
+            //{ path: '**', redirectTo: '/shopping-list'}
+     ]),
         //CommonModule, //instead BrowserModule 
         FormsModule,
         ReactiveFormsModule,
