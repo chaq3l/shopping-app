@@ -2,8 +2,8 @@ import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef, OnDestr
 import { Subscription } from 'rxjs';
 import { ShoppingListService } from '../shopping-list.service'
 import { Ingredient } from '../../shared/ingredient.model';
-import { FormGroup, NgForm } from '@angular/forms';
-import { formatCurrency } from '@angular/common';
+import { NgForm } from '@angular/forms';
+//import { formatCurrency } from '@angular/common';
 
 
 @Component({

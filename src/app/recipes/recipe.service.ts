@@ -5,7 +5,6 @@ import { Subject } from 'rxjs';
 import { Ingredient } from '../shared/ingredient.model';
 import { ShoppingListService } from '../shopping-list/shopping-list.service';
 import { Recipe } from './recipe.model'
-import { DataStorageService } from '../shared/data-storage.service';
 
 @Injectable()
 export class RecipeService {
