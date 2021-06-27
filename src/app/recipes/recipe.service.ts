@@ -1,10 +1,12 @@
 //import { EventEmitter } from '@angular/core';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import { Store } from '@ngrx/store';
 //import { Subject } from 'rxjs';
 import { Ingredient } from '../shared/ingredient.model';
 import { ShoppingListService } from '../shopping-list/shopping-list.service';
 import { Recipe } from './recipe.model'
+import * as ShoppingListActions from '../shopping-list/store/shopping-list.actions'
 
 @Injectable()
 export class RecipeService {
@@ -54,7 +56,10 @@ export class RecipeService {
         // ])
       ];
 
-      constructor(private shoppingListService:ShoppingListService){}
+      constructor(
+        private shoppingListService:ShoppingListService,
+        private store : Store<{shoppingList: { ingredients: Ingredient[] }}>
+        ){}
      
       //selectedRecipe= new Recipe('Empty recipe', 'This is empty recipe from RecipeService. If you see this there is probably an error in application', '')
       
@@ -65,7 +70,8 @@ export class RecipeService {
         return this.recipes.slice()
       }
       addIngredientsToShoppingList(ingredientList:Ingredient[]){        
-          this.shoppingListService.addIngredients(ingredientList)        
+          //this.shoppingListService.addIngredients(ingredientList) 
+          this.store.dispatch(new ShoppingListActions.AddIngredients(ingredientList))       
       }
       
       getRecipeByName(name:string){
