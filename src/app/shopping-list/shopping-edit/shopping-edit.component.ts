@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 
 import { Ingredient } from '../../shared/ingredient.model';
 import * as ShoppingListActions from '../store/shopping-list.actions'
-import * as fromShoppingList from '../store/shopping-list.reducer'
+import * as fromAppState from '../../store/app.reducer'
 //import { formatCurrency } from '@angular/common';
 
 
@@ -22,7 +22,7 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
   @ViewChild('shoppingForm') shoppingForm!: NgForm;
   
   constructor(
-    private store: Store<fromShoppingList.AppState>
+    private store: Store<fromAppState.AppState>
   ) { }
 
   subscription!: Subscription;

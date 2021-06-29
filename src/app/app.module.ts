@@ -14,8 +14,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core.module';
 //import { shoppingListReducer } from './shopping-list/store/shopping-list.reducer';
-import { reducers}  from './shopping-list/store' ;
+// import { reducers}  from './shopping-list/store' ;
+// import { authReducer } from './auth/store/auth.reducer';
 import { shoppingListReducer } from './shopping-list/store/shopping-list.reducer';
+import { appReducer } from './store/app.reducer';
 //import { AuthModule } from './auth/auth.module';
 //import { RecipeService } from './recipes/recipe.service'
 
@@ -31,7 +33,7 @@ import { shoppingListReducer } from './shopping-list/store/shopping-list.reducer
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    StoreModule.forRoot(reducers),    
+    StoreModule.forRoot(appReducer),    
     //AuthModule,
     //RecipesModule,
     SharedModule,

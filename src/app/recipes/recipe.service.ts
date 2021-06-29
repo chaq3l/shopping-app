@@ -6,7 +6,7 @@ import { Store } from '@ngrx/store';
 import { Ingredient } from '../shared/ingredient.model';
 import { Recipe } from './recipe.model'
 import * as ShoppingListActions from '../shopping-list/store/shopping-list.actions'
-import * as fromShoppingList from '../shopping-list/store/shopping-list.reducer'
+import * as fromAppState from '../store/app.reducer'
 
 @Injectable()
 export class RecipeService {
@@ -57,7 +57,7 @@ export class RecipeService {
       ];
 
       constructor(
-        private store : Store<fromShoppingList.AppState>
+        private store : Store<fromAppState.AppState>
         ){}
      
       //selectedRecipe= new Recipe('Empty recipe', 'This is empty recipe from RecipeService. If you see this there is probably an error in application', '')
