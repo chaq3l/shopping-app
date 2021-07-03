@@ -12,7 +12,7 @@ import * as ShoppingListActions from './store/shopping-list.actions'
 })
 export class ShoppingListComponent implements OnInit, OnDestroy {
     ingredientsList!:Ingredient[]
-    idChangeSub!: Subscription;
+    //idChangeSub!: Subscription;
     ingredientsSub!: Subscription
     @Input() ingredients!: Observable<{ingredients: Ingredient[]}>
 
@@ -55,7 +55,7 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(): void{
-        this.idChangeSub.unsubscribe();
+        //this.idChangeSub.unsubscribe();
         this.ingredientsSub.unsubscribe()
     }
     
