@@ -116,7 +116,8 @@ export class AuthService {
         {email: email,
         password: password,
         returnSecureToken: true
-        }).pipe(catchError(
+        })
+        .pipe(catchError(
             this.handleError           
         ), tap(resData => {
             this.handleAuthentication(

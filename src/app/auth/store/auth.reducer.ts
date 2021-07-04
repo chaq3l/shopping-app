@@ -3,10 +3,14 @@ import * as AuthActions from "./auth.actions"
 
 export interface State {
     user?: User
+    authError? : string
+    loading: boolean
 }
 
 const initialState : State = {
-    user: undefined
+    user: undefined,
+    authError : undefined,
+    loading: false
 }
 
 export function authReducer(
@@ -22,12 +26,28 @@ export function authReducer(
                     action.payload.expirationDate)
                 return {
                     ...state,
-                    user: user
+                    authError: undefined,
+                    user: user,
+                    loading: false
                 }
             case AuthActions.LOGOUT:
                 return {
                     ...state,
-                    user: undefined
+                    authError: undefined,
+                    user: undefined,
+                }
+            case AuthActions.LOGIN_START:
+                return {
+                    ...state,
+                    authError: undefined,
+                    loading: true
+                }
+            case AuthActions.LOGIN_FAIL:
+                return {
+                    ...state,
+                    user: undefined,
+                    authError: action.payload,
+                    loading: false
                 }
             default:
                 return state
