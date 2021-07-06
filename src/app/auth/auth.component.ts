@@ -1,8 +1,8 @@
 import { Component, ComponentFactoryResolver, OnInit, OnDestroy, ViewChild } from "@angular/core";
 import { NgForm } from "@angular/forms";
-import { Router } from "@angular/router";
-import { Observable, onErrorResumeNext, Subscription } from "rxjs";
-import { AuthService, AuthResponseData } from "./auth.service";
+//import { Router } from "@angular/router";
+import { Subscription } from "rxjs";
+//import { AuthService, AuthResponseData } from "./auth.service";
 import { Store } from "@ngrx/store";
 
 import { AlertComponent } from '../shared/alert/alert.component';
@@ -18,16 +18,18 @@ export class AuthComponent implements OnInit, OnDestroy{
     isLoginMode = true;
     isLoading = false;
     error?: string = ''
-    closeSub = new Subscription
+    private closeSub = new Subscription
+    private storeSub = new Subscription
     @ViewChild(PlaceholderDirective, {static: false}) alertHost!: PlaceholderDirective;
 
-    constructor(private authService: AuthService, 
-        private router : Router, 
+    constructor(
+        //private authService: AuthService, 
+        //private router : Router, 
         private componentFactoryResolver: ComponentFactoryResolver,
         private store: Store<fromApp.AppState>){}
 
     ngOnInit(){
-        this.store.select('auth').subscribe(authState => {
+        this.storeSub = this.store.select('auth').subscribe(authState => {
             this.isLoading = authState.loading;
             this.error = authState.authError
             if(this.error){
@@ -47,16 +49,15 @@ export class AuthComponent implements OnInit, OnDestroy{
             return
         }
         const email = form.value.email;
-        const password = form.value.password
+        const password = form.value.password       
 
-        let authObs : Observable<AuthResponseData>;
-
-        this.isLoading = true;
+        
         if (this.isLoginMode){
             //authObs = this.authService.login(email, password)
             this.store.dispatch(new AuthAction.LoginStart({email:email, password:password}))
-        }else {        
-            authObs = this.authService.signup(email, password)
+        }
+        else {        
+            this.store.dispatch(new AuthAction.SignupStart({email:email, password:password}))
         }
 
         
@@ -76,7 +77,7 @@ export class AuthComponent implements OnInit, OnDestroy{
     }
 
     onHandleError(){
-        this.error = ''
+        this.store.dispatch(new AuthAction.ClearError())
     }
 
     private showErrorAlert(message: string){
@@ -97,6 +98,9 @@ export class AuthComponent implements OnInit, OnDestroy{
     ngOnDestroy(){
         if(this.closeSub){
             this.closeSub.unsubscribe()
+        }
+        if(this.storeSub){
+            this.storeSub.unsubscribe()
         }
     }
 }

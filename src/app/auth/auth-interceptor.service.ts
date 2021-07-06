@@ -27,7 +27,7 @@ constructor(private authService : AuthService, private store : Store<fromApp.App
             if(!user || !user.token){                
                 return next.handle(req);
             }
-                const modifiedReq = req.clone({params : new HttpParams().set('auth', user.token)})
+                const modifiedReq = req.clone({params : new HttpParams().set('auth', String(user.token))})
                 return next.handle(modifiedReq)
         
     
