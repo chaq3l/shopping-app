@@ -1,26 +1,28 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from '@angular/common/http'
 import { map, tap } from 'rxjs/operators'
+import { Store } from "@ngrx/store";
 
-import { RecipeService } from "../recipes/recipe.service";
+
 import { Recipe } from "../recipes/recipe.model";
-import { AuthService } from "../auth/auth.service";
+import * as fromAppState from '../store/app.reducer'
+import * as RecipesAction from '../recipes/store/recipe.action'
+
 
 @Injectable({providedIn: 'root'})
 export class DataStorageService {
-    constructor(private http: HttpClient, 
-        private  recipeService: RecipeService,
-        private authService: AuthService
+    constructor(private http: HttpClient,
+        private store: Store<fromAppState.AppState>
         ) {
      
     }
 
     storeRecipes() {
-        const recipes = this.recipeService.getRecipes();
-        this.http.put('https://ng-recipe-book-1526e-default-rtdb.firebaseio.com/recipes.json', recipes)
-        .subscribe(response => {
-            console.log(response)
-        });
+        //const recipes = this.recipeService.getRecipes();
+        // this.http.put('https://ng-recipe-book-1526e-default-rtdb.firebaseio.com/recipes.json', recipes)
+        // .subscribe(response => {
+        //     console.log(response)
+        // });
     }
 
     fetchRecipes() {        
@@ -35,7 +37,8 @@ export class DataStorageService {
                 
             }); 
        }), tap(recipes => {
-            this.recipeService.setRecipes(recipes)
+            //this.recipeService.setRecipes(recipes)
+            this.store.dispatch(new RecipesAction.SetRecipes(recipes))
        })
        )
 

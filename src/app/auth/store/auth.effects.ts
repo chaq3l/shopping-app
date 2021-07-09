@@ -57,7 +57,8 @@ const handleAuthentication = (expiresIn: number, email: string, userId: string, 
         email: email,
         userID: userId, 
         token: token, 
-        expirationDate:expirationDate})
+        expirationDate:expirationDate,
+        redirect: true})
 }
 
 @Injectable()
@@ -131,8 +132,10 @@ export class AuthEffects {
     @Effect({dispatch: false})
     authRedirect = this.actions$.pipe(
         ofType(AuthActions.AUTHENTICATE_SUCCES), 
-        tap(() => {
-            this.router.navigate(['/']);
+        tap((authSuccesAction: AuthActions.AuthenticateSucces) => {
+            if(authSuccesAction.payload.redirect){
+                this.router.navigate(['/']);
+            }
     }))
 
     @Effect({dispatch: false})
@@ -178,7 +181,8 @@ export class AuthEffects {
                         email: loadedUser.email, 
                         userID: loadedUser.id, 
                         token: String(loadedUser.token), 
-                        expirationDate: new Date(userData._tokenExpirationDate)})
+                        expirationDate: new Date(userData._tokenExpirationDate),
+                        redirect: false})
                 
             }
             return {type: 'DUMMY'}

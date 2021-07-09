@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http'
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { StoreRouterConnectingModule } from '@ngrx/router-store'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,6 +22,8 @@ import { CoreModule } from './core.module';
 import { shoppingListReducer } from './shopping-list/store/shopping-list.reducer';
 import { appReducer } from './store/app.reducer';
 import { AuthEffects } from './auth/store/auth.effects';
+import { RecipeEffects } from './recipes/store/recipe.effects';
+import { environment } from 'src/environments/environment';
 //import { AuthModule } from './auth/auth.module';
 //import { RecipeService } from './recipes/recipe.service'
 
@@ -36,7 +40,9 @@ import { AuthEffects } from './auth/store/auth.effects';
     ReactiveFormsModule,
     HttpClientModule,
     StoreModule.forRoot(appReducer),  
-    EffectsModule.forRoot([AuthEffects]),
+    EffectsModule.forRoot([AuthEffects, RecipeEffects]),
+    StoreDevtoolsModule.instrument({ logOnly: environment.production }),
+    StoreRouterConnectingModule.forRoot(),
     //AuthModule,
     //RecipesModule,
     SharedModule,
